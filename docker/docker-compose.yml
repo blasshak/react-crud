@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+    application:
+      image: tianon/true
+      volumes:
+          - /home/blashak/Projects/practicajs:/var/www/practicajs
+    node:
+      build: nodejs
+      command: sh ./run.sh
+      ports:
+        - 8888:8888
+      volumes_from:
+        - application
+    list:
+      build: nodejs
+      command: sh ./run-list.sh
+      ports:
+        - 8889:8889
+      volumes_from:
+        - application
